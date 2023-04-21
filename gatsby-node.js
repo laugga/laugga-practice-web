@@ -9,6 +9,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
 // Define the template for blog post
 const blogPost = path.resolve(`./src/templates/blog-post.js`)
+const exercisePost = path.resolve(`./src/templates/exercise-post.js`)
 
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
@@ -24,6 +25,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id
           fields {
             slug
+            collection
           }
         }
       }
@@ -38,7 +40,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = result.data.allMarkdownRemark.nodes.filter(
+    node => node.fields.collection === `blog`
+  )
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
@@ -50,7 +54,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
 
       createPage({
-        path: post.fields.slug,
+        path: 'blog' + post.fields.slug,
         component: blogPost,
         context: {
           id: post.id,
@@ -70,11 +74,18 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
+    const parent = getNode(node.parent)
 
     createNodeField({
       name: `slug`,
       node,
       value,
+    })
+
+    createNodeField({
+      name: `collection`,
+      node,
+      value: parent.sourceInstanceName,
     })
   }
 }

@@ -1,21 +1,22 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const ExerciseIndex = ({ data, location }) => {
+const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const exercises = data.allMarkdownRemark.nodes.filter(
-    node => node.fields.collection === `exercises`
+  const posts = data.allMarkdownRemark.nodes.filter(
+    node => node.fields.collection === `blog`
   )
-  if (exercises.length === 0) {
+
+  if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
+        <Bio />
         <p>
-          No blog exercises found. Add markdown exercises to "content/blog" (or the
+          No blog posts found. Add markdown posts to "content/blog" (or the
           directory you specified for the "gatsby-source-filesystem" plugin in
           gatsby-config.js).
         </p>
@@ -25,26 +26,33 @@ const ExerciseIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
+      <Bio />
       <ol style={{ listStyle: `none` }}>
-        {exercises.map(exercise => {
-          const title = exercise.frontmatter.title || exercise.fields.slug
-          const image = getImage(exercise.frontmatter.image)
+        {posts.map(post => {
+          const title = post.frontmatter.title || post.fields.slug
+          const path = "blog" + post.fields.slug
 
           return (
-            <li key={exercise.fields.slug}>
+            <li key={post.fields.slug}>
               <article
-                className="exercise-list-item"
+                className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <GatsbyImage image={image} alt={exercise.frontmatter.alt} />
+                  <h2>
+                    <p>{post.fields.collection}</p>
+                    <p>{post.fields.slug}</p>
+                    <Link to={path} itemProp="url">
+                      <span itemProp="headline">{title}</span>
+                    </Link>
+                  </h2>
+                  <small>{post.frontmatter.date}</small>
                 </header>
                 <section>
-                  <p>{exercise.frontmatter.date}</p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: exercise.frontmatter.description || exercise.excerpt,
+                      __html: post.frontmatter.description || post.excerpt,
                     }}
                     itemProp="description"
                   />
@@ -58,14 +66,14 @@ const ExerciseIndex = ({ data, location }) => {
   )
 }
 
-export default ExerciseIndex
+export default BlogIndex
 
 /**
  * Head export to define metadata for the page
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="All exercises" />
+export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
   {
@@ -85,12 +93,6 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
-          alt
-          image {
-            childImageSharp {
-            	gatsbyImageData(width: 200)
-          	}
-          }
         }
       }
     }

@@ -35,6 +35,6 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Image', name: 'image', allow_multiple: false, choose_url: false, widget: 'image' }
       - { label: 'Alt text', name: 'alt', widget: 'text' }
-      - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Description', name: 'description', required: false, widget: 'text' }
       - { label: 'Video URL', name: 'video_url', required: false, widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
