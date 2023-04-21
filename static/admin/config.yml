@@ -21,3 +21,20 @@ collections:
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'exercise'
+    label: 'Exercise'
+    folder: 'content/exercise'
+    create: true
+    slug: '{{slug}}'
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Image', name: 'image', allow_multiple: false, choose_url: false, widget: 'image' }
+      - { label: 'Alt text', name: 'alt', widget: 'text' }
+      - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Video URL', name: 'video_url', required: false, widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
