@@ -5,6 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Video from "../components/video"
 
 const ExerciseIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -30,6 +31,19 @@ const ExerciseIndex = ({ data, location }) => {
           const title = exercise.frontmatter.title || exercise.fields.slug
           const image = getImage(exercise.frontmatter.image)
 
+          if (exercise.frontmatter.video_url != null) {
+            return (
+<div class="item" key={exercise.fields.slug}>
+
+<Video
+        videoSrcURL={exercise.frontmatter.video_url}
+        videoTitle=""
+      />
+
+<p>{exercise.frontmatter.date}</p>
+</div>
+            )
+          } else {
           return (
             <div class="item" key={exercise.fields.slug}>
 
@@ -44,6 +58,7 @@ const ExerciseIndex = ({ data, location }) => {
                   />
             </div>
           )
+                  }
         })}
       </div>
     </Layout>
@@ -83,6 +98,7 @@ export const pageQuery = graphql`
             	gatsbyImageData(width: 250)
           	}
           }
+          video_url
         }
       }
     }
