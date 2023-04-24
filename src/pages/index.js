@@ -25,22 +25,16 @@ const ExerciseIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <ol style={{ listStyle: `none` }}>
+      <div class="container">
         {exercises.map(exercise => {
           const title = exercise.frontmatter.title || exercise.fields.slug
           const image = getImage(exercise.frontmatter.image)
 
           return (
-            <li key={exercise.fields.slug}>
-              <article
-                className="exercise-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
+            <div class="item" key={exercise.fields.slug}>
+
                   <GatsbyImage image={image} alt={exercise.frontmatter.alt} />
-                </header>
-                <section>
+      
                   <p>{exercise.frontmatter.date}</p>
                   <p
                     dangerouslySetInnerHTML={{
@@ -48,12 +42,10 @@ const ExerciseIndex = ({ data, location }) => {
                     }}
                     itemProp="description"
                   />
-                </section>
-              </article>
-            </li>
+            </div>
           )
         })}
-      </ol>
+      </div>
     </Layout>
   )
 }
@@ -88,7 +80,7 @@ export const pageQuery = graphql`
           alt
           image {
             childImageSharp {
-            	gatsbyImageData(width: 200)
+            	gatsbyImageData(width: 250)
           	}
           }
         }
