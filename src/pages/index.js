@@ -30,6 +30,7 @@ const ExerciseIndex = ({ data, location }) => {
         {exercises.map(exercise => {
           const title = exercise.frontmatter.title || exercise.fields.slug
           const image = getImage(exercise.frontmatter.image)
+          const path = "exercises" + exercise.fields.slug
 
           if (exercise.frontmatter.video_url != null) {
             return (
@@ -40,23 +41,25 @@ const ExerciseIndex = ({ data, location }) => {
         videoTitle=""
       />
 
-<p>{exercise.frontmatter.date}</p>
 </div>
             )
           } else {
           return (
+            // <Link to={path} itemProp="url">
+            
             <div class="item" key={exercise.fields.slug}>
 
                   <GatsbyImage image={image} alt={exercise.frontmatter.alt} />
       
-                  <p>{exercise.frontmatter.date}</p>
-                  <p
+    
+                  {/* <p
                     dangerouslySetInnerHTML={{
                       __html: exercise.frontmatter.description || exercise.excerpt,
                     }}
                     itemProp="description"
-                  />
+                  /> */}
             </div>
+            // </Link>
           )
                   }
         })}
