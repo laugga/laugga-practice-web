@@ -8,6 +8,19 @@ public_folder: /img
 publish_mode: editorial_workflow
 
 collections:
+  - label: "Settings"
+    name: settings
+    files:
+      - label: SEO
+        name: seo
+        file: 'content/settings/seo.yml'
+        fields:
+          - {label: "Site Name", name: siteName, widget: string}
+          - {label: "Title", name: title, widget: string}
+          - {label: "Description", name: description, widget: string}
+          - {label: "Site URL", name: siteUrl, widget: string}
+          - {label: "Keywords", name: keywords, widget: string}
+          - {label: 'Favicon', name: 'favicon', allow_multiple: false, choose_url: false, widget: 'image' }
   - name: 'blog'
     label: 'Blog'
     folder: 'content/blog'

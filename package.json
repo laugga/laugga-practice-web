@@ -12,9 +12,11 @@
     "@fontsource/montserrat": "^4.5.14",
     "gatsby": "^5.8.0",
     "gatsby-plugin-feed": "^5.8.0",
+    "gatsby-plugin-humans-txt": "^1.1.4",
     "gatsby-plugin-image": "^3.8.0",
     "gatsby-plugin-manifest": "^5.8.0",
     "gatsby-plugin-netlify-cms": "^7.8.0",
+    "gatsby-plugin-react-helmet": "^6.10.0",
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5.8.0",
     "gatsby-remark-images": "^7.8.0",
@@ -26,7 +28,8 @@
     "netlify-cms-app": "^2.15.72",
     "prismjs": "^1.29.0",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
     "prettier": "^2.8.4"
