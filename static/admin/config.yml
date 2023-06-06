@@ -13,7 +13,7 @@ collections:
     files:
       - label: SEO
         name: seo
-        file: 'content/settings/seo.yml'
+        file: 'content/settings/seo.md'
         fields:
           - {label: "Site Name", name: siteName, widget: string}
           - {label: "Title", name: title, widget: string}
