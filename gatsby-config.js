@@ -21,6 +21,24 @@ module.exports = {
     },
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-humans-txt`,
+      options: {
+        metaTag: true,
+        team: [
+          {
+            Developer: `Luis Laugga`,
+            GitHub: `luislaugga`
+          }
+        ],
+        thanks: [`Gatsby`, `Node`],
+        site: {
+          Standards: `JavaScript`,
+          Components: `Decap CMS`
+        },
+        note: `Some rights reserved, all wrongs deserved.`
+      }
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
