@@ -13,6 +13,8 @@ collections:
     files:
       - label: SEO
         name: seo
+        media_folder: ''
+        public_folder: ''
         file: 'content/settings/seo.md'
         fields:
           - {label: "Site Name", name: siteName, widget: string}
@@ -20,7 +22,8 @@ collections:
           - {label: "Description", name: description, widget: string}
           - {label: "Site URL", name: siteUrl, widget: string}
           - {label: "Keywords", name: keywords, widget: string}
-          - {label: 'Favicon', name: 'favicon', allow_multiple: false, choose_url: false, widget: 'image' }
+          - {label: 'Favicon', name: favicone, allow_multiple: false, choose_url: false, widget: 'image' }
+          - {label: 'Favicon', name: favicon, allow_multiple: false, choose_url: false, widget: 'image' }
   - name: 'blog'
     label: 'Blog'
     folder: 'content/blog'

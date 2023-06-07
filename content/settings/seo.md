@@ -6,5 +6,5 @@ description: We are never masters of anything and we are always leaning – it�
   gain knowledge and skill.
 siteUrl: https://laug.ga
 keywords: practice design digital interactive watch phone
-favicon: /img/laugga-icon.png
+favicon: laugga-icon.png
 ---
